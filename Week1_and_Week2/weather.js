@@ -22,7 +22,7 @@ document.querySelector(".needs-validation").addEventListener("submit",async(even
                             <span>&#9729; Minimum Temparature : ${(weares.main.temp_min-273.15).toFixed(2)}&deg;C<br>
                             <span>&#9729; Maximum Temperature : ${(weares.main.temp_max-273.15).toFixed(2)}&deg;C<br>
                             <span>&#9729; Feels like : ${(weares.main.feels_like-273.15).toFixed(2)}&deg;C<br>
-                            <span>&#9729; Humidity : ${(weares.main.humidity)}<br>
+                            <span>&#9729; Humidity : ${(weares.main.humidity)}%<br>
                             <span>&#9729; Weather : ${(weares.weather[0].description)}<br></p>
                 </div>
             </div>               

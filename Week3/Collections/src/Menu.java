@@ -7,9 +7,9 @@ class Pair{
     String type;
     int price;
     public Pair(String item,int price,String type){
-        this.type=type;
-        this.item=item;
-        this.price=price;
+        this.type=type; //to keep a track of type of the food item
+        this.item=item; //name of the item
+        this.price=price; //price of the item
     }
 }
 public class Menu {

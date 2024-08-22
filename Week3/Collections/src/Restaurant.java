@@ -32,7 +32,8 @@ public class Restaurant extends Menu{
                 System.out.print("CHOOSE AN OPTION BASED ON INDEX : ");
                 ch=sc.nextInt();
                 switch(ch){
-                    case 1: System.out.println("\nOur Mouthwatering Menu!!!");
+                    case 1://Displaying menu based on food type using the type variable of Pair Class
+                     System.out.println("\nOur Mouthwatering Menu!!!");
                             System.out.println("1.Breads");
                             for (Entry<Integer, Pair> me : menu.all.entrySet()) {
                                 if(me.getValue().type.equals("bread"))

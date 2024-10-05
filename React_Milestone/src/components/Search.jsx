@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,Suspense, lazy } from 'react';
 import { ArrowUpOutlined,ArrowDownOutlined , DownOutlined} from '@ant-design/icons';
-import { AutoComplete , Image, Dropdown, Space} from 'antd';
+import { AutoComplete , Image, Dropdown, Space, Spin} from 'antd';
 import styled from 'styled-components';
 import NewProductModal from './NewProductModal';
+
+const ProductImage = lazy(() => import('./ProductImage'));
 
 const Form = styled.form`
     display:flex;
@@ -139,9 +141,9 @@ const Search = () => {
             <tbody>
               <tr>
                 <td style={{ width: '40%'}}>
-                  <Image.PreviewGroup items={item.images} width="400px">
-                    <Image width='80%' src={item.images[0]} />
-                  </Image.PreviewGroup>
+                  <Suspense fallback={<Spin/>}>
+                    <ProductImage images={item.images} />
+                  </Suspense>
                 </td>
                 <td style={{ width: '40%' }}>
                     <div>

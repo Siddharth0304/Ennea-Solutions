@@ -133,7 +133,7 @@ const Search = () => {
       }
 
       {/* Display product data if available */}
-      {searchData.map((item)=>(
+      {searchData.length>0 ? searchData.map((item)=>(
         <React.Fragment key={item.id}>
         <Div >
             <table width="80%">
@@ -194,7 +194,8 @@ const Search = () => {
         
 
         </React.Fragment>
-      ))}
+      )) : <Div style={{fontWeight:"500",fontSize:"1.5rem"}}>Product not available</Div> 
+      }
       
     </>
   );

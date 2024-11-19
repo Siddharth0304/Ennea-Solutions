@@ -150,7 +150,7 @@ const Search = () => {
                         <h2 style={{ display: 'inline', margin: 0 }}>{item.title}</h2>
                         <div style={{display:"flex",alignItems:'center'}}>
                             <span style={{fontSize:'0.8rem'}}>{item.rating}</span> &nbsp;
-                            <div className="Stars" style={{ "--rating": item.rating, display:"inline" }}></div>
+                            <div className="Stars" style={{ "--rating": item.rating, display:"inline"}}></div>
                         </div>
                         <p>
                             Brand: {item.brand ? item.brand : <i className="fa-solid fa-ban" style={{color: "#ff1e00"}}></i>}

@@ -2,6 +2,7 @@ package com.example.CourseNest.service;
 
 import com.example.CourseNest.model.Courses;
 import com.example.CourseNest.model.Users;
+import com.example.CourseNest.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.CourseNest.repository.CoursesRepository;
@@ -13,6 +14,9 @@ public class CoursesService {
 
     @Autowired
     private CoursesRepository coursesRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
 
     public List<Courses> findAllCourses() {
@@ -42,7 +46,6 @@ public class CoursesService {
                 .orElseThrow(()->new RuntimeException("No course with id"));
         courses.setTitle(courseDetails.getTitle());
         courses.setDescription((courseDetails.getDescription()));
-        courses.setRating(courseDetails.getRating());
         courses.setTutor(courseDetails.getTutor());
         courses.setLanguage(courseDetails.getLanguage());
         courses.setCourseObjectives(courseDetails.getCourseObjectives());
@@ -53,6 +56,12 @@ public class CoursesService {
     }
 
     public void deleteCourse(Integer courseId) {
+        Courses courses=coursesRepository.findById(courseId).orElseThrow(()->new RuntimeException("Error"));
+        courses.getUsersEnrolled().forEach((users)->{
+            users.getCoursesEnrolled().remove(courses);
+            users.getWishlist().remove(courses);
+            users.getCart().remove(courses);
+        });
         coursesRepository.deleteById(courseId);
     }
 

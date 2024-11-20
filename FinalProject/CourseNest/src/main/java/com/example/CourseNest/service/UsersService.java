@@ -158,6 +158,10 @@ public class UsersService {
     }
 
     public void deleteProfile(Integer userId) {
+        Users users=usersRepository.findById(userId).orElseThrow(()->new RuntimeException("Error"));
+        users.getCoursesEnrolled().forEach((cor)->{
+            cor.getUsersEnrolled().remove(users);
+        });
         usersRepository.deleteById(userId);
     }
 

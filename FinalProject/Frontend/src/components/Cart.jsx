@@ -84,8 +84,8 @@ export default function Cart() {
         }
     }
 
-    const addToMyCourses=()=>{
-        cart.forEach(async(ca) => {
+    const addToMyCourses=async()=>{
+        for(const ca of cart){
             try {
                 const res = await fetch(`http://localhost:8080/users/courses_enrolled/${localStorage.getItem('userId')}/${ca.id}`, {
                     method: 'POST',
@@ -111,7 +111,7 @@ export default function Cart() {
             catch (error) {
                 console.error("Error deleting cart:", error);
             }            
-        });        
+        };        
     }
 
 return (

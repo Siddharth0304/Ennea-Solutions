@@ -135,7 +135,7 @@ export default function Navbar() {
     
       const handleSubmit = async () => {
         const query=inp;
-        setInp("");
+        // setInp("");
         if(query.length>0)
            return navigate(`/search/${query}`);
       };

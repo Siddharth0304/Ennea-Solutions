@@ -51,7 +51,8 @@ const BuyNow = ({id}) => {
                 }
             });
             if(res.status==401){
-              toast.error("Please login")
+              toast.error("Please login");
+              localStorage.clear();
               return navigate('/login');
             }
             if (res.status === 409) {

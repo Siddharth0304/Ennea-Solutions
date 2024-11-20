@@ -4,6 +4,7 @@ import {HeartOutlined,ShoppingCartOutlined} from '@ant-design/icons';
 import styled from 'styled-components'
 import {Link, NavLink ,useNavigate} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import '../css/SingleCourse.css'
 
 const Button = styled.button`
     height:32px;

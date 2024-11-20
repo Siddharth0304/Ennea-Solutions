@@ -43,7 +43,8 @@ export default function Cart() {
                 }
             }); 
             if(res.status==401){
-                toast.error("Please login")
+                toast.error("Please login");
+                localStorage.clear();
                 return navigate('/login');
             }
             const data=await res.json();

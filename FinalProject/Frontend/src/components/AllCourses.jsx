@@ -20,7 +20,7 @@ export default function AllCourses() {
             {courses.map((course) => (
                 <Link to={`/course/${course.id}`} className="course-link" key={course.id}>
                     <div className="card course-card">
-                        <img src={course.image} className="card-img-top" alt="course_img" style={{ height: '14rem', width: '14rem' }} />
+                        <img src={course.image} className="card-img-top all-img" alt="course_img" style={{ height: '14rem', width: '14rem' }} />
                         <div className="card-body">
                             <div className="card-text">
                                 <span style={{fontWeight:"700"}}>{course.title}</span> <br />

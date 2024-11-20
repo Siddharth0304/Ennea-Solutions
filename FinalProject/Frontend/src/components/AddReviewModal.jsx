@@ -29,7 +29,8 @@ const AddReviewModal = ({c_id,onReviewAdded}) => {
         })
         .then((data) => {
           if(data.status==401){
-            toast.error("Please login")
+            toast.error("Please login");
+            localStorage.clear();
             return navigate("/login");
           }
           

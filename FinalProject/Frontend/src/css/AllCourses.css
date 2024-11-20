@@ -4,7 +4,7 @@
     width: 16rem;
 }
 
-.card-img-top{
+.all-img{
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;

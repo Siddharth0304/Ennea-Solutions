@@ -34,6 +34,12 @@ const UpdateCourseModal = ({course}) => {
           body: JSON.stringify(values), 
         })
         .then((data) => {
+          if(data.status==401){
+            toast.error("Please login");
+            localStorage.clear();
+            return navigate("/login");
+          }
+          
           console.log(values);
           toast.success("Details updated successfully");
           setOpen(false);
@@ -99,10 +105,6 @@ const UpdateCourseModal = ({course}) => {
 
             <Form.Item label="Description" name="description" rules={[{ required: true,message:'Please input the course description!'}]}>
                 <Input.TextArea style={{ width: '100%' }} placeholder="Enter Course Description" />
-            </Form.Item>
-
-            <Form.Item label="Rating" name="rating" rules={[{ required: true,message:'Please input the course rating!'}]}>
-                <InputNumber style={{ width: '100%' }} placeholder="Enter Course Rating" min={1} max={5}/>
             </Form.Item>
 
             <Form.Item label="Tutor" name="tutor" rules={[{ required: true,message:'Please input the course tutor!'}]}>

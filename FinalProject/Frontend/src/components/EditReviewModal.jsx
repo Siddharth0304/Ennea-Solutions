@@ -29,7 +29,8 @@ const EditReviewModal = ({rev_id,curRev,onReviewEdited}) => {
         })
         .then((data) => {
           if(data.status==401){
-            toast.error("Please login")
+            toast.error("Please login");
+            localStorage.clear();
             return navigate('/login');
           }
           toast.success("Review edited successfully");

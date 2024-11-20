@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import '../css/SingleCourse.css'
 import {HeartOutlined,ShoppingCartOutlined,HeartFilled} from '@ant-design/icons';
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";    
 import { toast } from "react-toastify";
@@ -10,6 +9,7 @@ import BuyNow from './BuyNow';
 import UpdateCourseModal from './UpdateCourseModal';
 import DeleteCourseModal from './DeleteCourseModal';
 import styled from 'styled-components';
+import '../css/SingleCourse.css'
 
 const A = styled.a`
   text-decoration:none;
@@ -39,8 +39,11 @@ export default function SingleCourse() {
                         'Authorization':`Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                if(userRes.status==401)
+                if(userRes.status==401){
+                    toast.error("Please login");
+                    localStorage.clear();
                     return navigate("/login");
+                }
                 const userData=await userRes.json();
                 setUsersEnrolled(userData);
             }
@@ -173,7 +176,7 @@ export default function SingleCourse() {
         
         <div className='singlecourse-fixedimg' style={{padding:"3% 0 10% 7%",position:"absolute",top:"3rem",right:"5rem"}}>
             <div className="card cours-card" style={{borderRadius:'0',border:"2px solid #2D2F31",paddingBottom:"2rem"}}>
-                <img src={course.image} className="card-img-top img-top" alt="course_img" style={{ height: '12rem', width: '20rem'}} />
+                <img src={course.image} className="card-img-top img-top" alt="course_img" style={{ height: '12rem', width: '20rem',borderRadius:'0'}} />
                 <div className="card-body">
                     <div className="card-text">
                         <div style={{width:"20rem"}}>

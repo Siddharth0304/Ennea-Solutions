@@ -27,7 +27,8 @@ const DeleteProfileModal = ({id,st}) => {
                 }
             });
             if(res.status==401){
-              toast.error("Please login")
+              toast.error("Please login");
+              localStorage.clear();
               return navigate('/login');
             }
             if (res.ok) {

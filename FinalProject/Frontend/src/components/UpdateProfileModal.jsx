@@ -27,6 +27,12 @@ const UpdateProfileModal = ({details,st}) => {
           body: JSON.stringify(values), 
         })
         .then((data) => {
+          if(data.status==401){
+            toast.error("Please login");
+            localStorage.clear();
+            return navigate("/login");
+          }
+          
           toast.success("Details updated successfully");
           setOpen(false);
           setConfirmLoading(false);

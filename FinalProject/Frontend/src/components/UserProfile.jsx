@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,Suspense } from 'react'
 import { LinkedinFilled ,InstagramOutlined} from '@ant-design/icons'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import UpdateProfileModal from './UpdateProfileModal'
 import DeleteProfileModal from './DeleteProfileModal'
 import { toast } from 'react-toastify'
+import Spinner from './Spin'
+const UserImage=React.lazy(()=>import('./UserImage'))
 
 
 const But = styled.button`
@@ -33,6 +35,7 @@ export default function UserProfile() {
             });
             if(res.status==401){
                 toast.error("Please login");
+                localStorage.clear();
                 return navigate("/login");
             }
             if(res.ok){
@@ -61,11 +64,13 @@ export default function UserProfile() {
             <div>
                 <div style={{display:"flex",justifyContent:'center',alignItems:'center'}}>
                     {user.image?
-                        <img src={user.image} alt="" style={{width:"10rem",height:"10rem",borderRadius:"50%"}}/> :
+                        // <img src={user.image} alt="" style={{width:"10rem",height:"10rem",borderRadius:"50%"}}/> 
+                        <Suspense fallback={<Spinner/>}><UserImage user={user}/></Suspense>:
                         <div style={{width:"10rem",height:"10rem",borderRadius:"50%",backgroundColor:'#ff4040',display:"flex",justifyContent:'center',alignItems:'center',fontWeight:'600',fontSize:'3rem'}}>{user.firstName?.charAt(0)}{user.lastName?.charAt(0)}
                 </div>
                     }
                 </div> <br />
+                
                 <h4 style={{fontWeight:"600"}}>{user.firstName} &nbsp;{user.lastName}</h4>
                 <p><b>Username :</b> {user.username}</p>
                 <p><b>Email :</b> {user.email}</p>
